@@ -1,0 +1,349 @@
+<html>
+<!--
+
+	Three cup carnival game.  A "O" is an overturned cup
+	A "U" is a revealed cup and  "." is the pea your trying
+	to guess the position of in one of the 3 cups
+
+
+	-->
+
+<head>
+
+<title>All Text Three Cup Monte </title>
+
+<style>
+
+body {
+	text-align:center;
+	background-color: #102030;
+	color: white;
+	}
+
+h1  {
+	text-align:center;
+	font-size: 2em;
+	margin 4px;
+	}
+
+
+h3 {
+	text-align:center;
+	margin 4px;
+	color: white;
+    }
+
+
+button {
+	height: 30px;
+	padding:4px;
+	width: 100 px;
+	background-color: blue;
+	color: white;
+	}
+
+.row div{
+	font-size: 5em;
+	margin 10px;
+	float: left;   
+	color: yellow;
+    } 
+
+.row {
+	clear: both;
+	}
+
+
+#myNumber {
+	font-size: 1em;
+	width: 10 px;
+	margin: 4px;
+	padding: 4px; 
+	color: black;
+    } 
+
+#winlose {
+	
+	margin 10px;
+	color: red;
+
+}   
+
+#playme {
+	height: 20px;
+	padding:4px;
+	width: 40 px;
+	}
+
+
+
+#block {
+	font-size: 3m;	
+    margin: auto;
+    width:50%;
+    border: 4px green;
+    padding: 10px;
+    }	 
+
+#scorebox {
+	text-align:center;
+	margin 10px;
+	}
+    
+</style>
+
+
+</head>
+
+<!-- xxxxxxxxxpg2020xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxhb-->
+
+<body onload="start()";>
+
+<h1>All Text Three Cup Monte</h1>
+
+<div id = "block">
+
+	<div>
+		<div class = "row">
+			<div id="result1">O</div>
+			<div id="result2">O</div>
+			<div id="result3">O</div>
+		</div>
+	</div>		
+</div>
+
+<input type="number" id="myNumber" value="1"><br>
+
+<button onclick="play()">Enter 1, 2 or 3  & PUSH THIS BUTTON</button>
+
+<button type="button" onclick="reset()">RESET CUPS </button>
+
+<p id="winlose">RESULT</p>
+
+<div id = "result" ></div>
+
+<h4>WINS total</h4>
+<div id = "wins" ></div><h4>LOSSES total</h4>
+<div id = "losses" ></div>
+</div>
+<h4>HIT F5 to START or ReSTART THE GAME</h4>
+
+
+<script> 
+
+var wins = 0;
+var losses = 0;	
+var alreadyPlayed = 0;
+
+
+
+function play() {
+
+	var x = document.getElementById("myNumber").value;
+
+	/* if x ==""{
+		var html = 'Only 1, 2 or 3  & PUSH BIG PLAY BUTTON ' ;
+     	document.getElementById('result').innerHTML = html;
+		return
+	}
+	if x < 1{
+		var html = 'Only 1, 2 or 3  & PUSH BIG PLAY BUTTON ' ;
+     	document.getElementById('result').innerHTML = html;
+		return
+	}
+	if x > 4{
+		var html = 'Only 1, 2 or 3  & PUSH BIG PLAY BUTTON ' ;
+     	document.getElementById('result').innerHTML = html;
+		return
+	}	
+  	*/
+  	console.log("---------------------------------")
+	console.log ("picked----       "+ x);
+
+
+
+	if (alreadyPlayed == 1 ){
+		var html = 'You need to Reset The Cups ' ;
+     	document.getElementById('result').innerHTML = html;
+		return
+	}
+
+	alreadyPlayed = 1;
+	
+		
+	var pea = ".";
+	var cup = "O";
+	var up = "U"
+
+	document.getElementById('result1').innerHTML = up;
+	document.getElementById('result2').innerHTML = up;
+	document.getElementById('result3').innerHTML = up;
+
+	
+	var randNum = Math.floor (Math.random() * 3 +1 )
+	console.log("randnumber " + randNum);
+
+
+	if (randNum == 1){
+		document.getElementById('result1').innerHTML = pea}
+
+	if (randNum == 2){
+		document.getElementById('result2').innerHTML = pea}
+			
+	if (randNum == 3){
+		document.getElementById('result3').innerHTML = pea}
+		
+	
+		
+	// choice 1 -----------------------------------------	
+	
+	if  (x == 1 && randNum ==2 ){
+			console.log("losser12");
+			var html = 'Nope -- You Loose!  1 vs 2  !!!!' ;
+			losses = losses + 1;
+			document.getElementById('winlose').innerHTML = html;
+			var html = 'You need to Reset The Cups ' ;
+     		document.getElementById('result').innerHTML = html;
+     		document.getElementById('losses').innerHTML = losses;
+			return;
+			}	
+
+		if  (x == 1 && randNum ==3 ){
+			console.log("losser13");
+			var html = 'Nope -- You Loose!!  1  vs 3  !!!' ;
+			losses = losses + 1;
+			document.getElementById('winlose').innerHTML = html;
+			var html = 'You need to Reset The Cups ' ;
+     		document.getElementById('result').innerHTML = html;
+     		document.getElementById('losses').innerHTML = losses;
+			return;
+			}				
+
+	if  (x == 1 && randNum ==1 ){
+			console.log("winner 1 and 1");
+			wins = wins + 1;
+			var html = 'You Won 1  and 1 ' ;
+			console.log(html)
+     		document.getElementById('winlose').innerHTML = html;
+     		console.log("past  " + html);
+     		var html = 'You need to Reset The Cups ' ;
+     		document.getElementById('result').innerHTML = html;
+			document.getElementById('wins').innerHTML = wins;
+			return;
+			}
+			
+	//  choice 2--------------------------------------	
+
+	if  (x == 2 && randNum ==1 ){
+			console.log("losser21");
+			var html = 'Nope -- You Loose! 2 vs 1  !!!!' ;
+			losses = losses + 1;
+			document.getElementById('winlose').innerHTML = html;
+			var html = 'You need to Reset The Cups ' ;
+     		document.getElementById('result').innerHTML = html;
+     		document.getElementById('losses').innerHTML = losses;
+			return;
+			}	
+
+		if  (x == 2 && randNum ==3 ){
+			console.log("losser23");
+			var html = 'Nope -- You Loose!! 2 vs 3  !!!' ;
+			losses = losses + 1;
+			document.getElementById('winlose').innerHTML = html;
+			var html = 'You need to Reset The Cups ' ;
+     		document.getElementById('result').innerHTML = html;
+     		document.getElementById('losses').innerHTML = losses;
+			return;
+			}				
+
+	if  (x == 2 && randNum ==2 ){
+			console.log("winner22");
+			wins = wins + 1;
+			var html = 'You Won 2 and 2' ;
+			console.log(html)
+     		document.getElementById('winlose').innerHTML = html;
+     		console.log("past  " + html);
+     		var html = 'You need to Reset The Cups ' ;
+     		document.getElementById('result').innerHTML = html;
+     		document.getElementById('wins').innerHTML = wins;
+			return;
+			}
+
+	// choice = 3 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+	if  (x == 3 && randNum ==1 ){
+			console.log("losser31");
+			var html = 'Nope -- You Loose!  3 vs 1  !!!!' ;
+			losses = losses + 1;
+			document.getElementById('winlose').innerHTML = html;
+			var html = 'You need to Reset The Cups ' ;
+     		document.getElementById('result').innerHTML = html;
+     		document.getElementById('losses').innerHTML = losses;
+			return;
+			}	
+
+
+		if  (x == 3 && randNum ==2 ){
+			console.log("losser32");
+			var html = 'Nope -- You Loose!! 3 vs 2  !!!' ;
+			losses = losses + 1;
+			document.getElementById('winlose').innerHTML = html;
+			var html = 'You need to Reset The Cups ' ;
+     		document.getElementById('result').innerHTML = html;
+     		document.getElementById('losses').innerHTML = losses;
+			return;
+			}				
+
+	if  (x == 3 && randNum ==3 ){
+			console.log("winner33");
+			wins = wins + 1;
+			var html = 'You Won. 3  and 3 ' ;
+			console.log(html)
+     		document.getElementById('winlose').innerHTML = html;
+     		console.log("past  " + html);
+     		var html = 'You need to Reset The Cups and chose 1,2 or 3. ' ;
+     		document.getElementById('result').innerHTML = html;
+     		document.getElementById('wins').innerHTML = wins;
+			return;
+			}
+			
+	
+}
+
+function reset() {
+	alreadyPlayed = 0;
+	var cup = "O"
+	document.getElementById('result1').innerHTML = cup;
+	document.getElementById('result2').innerHTML = cup;
+	document.getElementById('result3').innerHTML = cup;
+	var html = 'READY to PLAY ' ;
+    document.getElementById('result').innerHTML = html;
+
+    var html = 'PICK 1, 2 or 3  & PUSH BIG PLAY BUTTON TO PLAY ' ;
+    document.getElementById('winlose').innerHTML = html;
+}
+
+
+function start() {
+	var pea = "@"
+	var cup = "O"
+	var bal= 1000;
+	alreadyPlayed =0;
+	document.getElementById('result1').innerHTML = cup;
+	document.getElementById('result2').innerHTML = cup;
+	document.getElementById('result3').innerHTML = cup;
+ 	var html = 'READY to PLAY ' ;
+    document.getElementById('result').innerHTML = html;
+	var html = 'PICK 1, 2 or 3  & PUSH BIG BUTTON TO PLAY ' ;
+    document.getElementById('winlose').innerHTML = html;
+
+}
+
+
+</script> 
+
+<h5> 	- - - For Amusement Only - - - </h5>
+<h6>Three Cup Monte  ver 727.003</h6>
+
+</body>
+</html>
